@@ -45,7 +45,55 @@ public class JobTest {
 
 
 
+    @Test
+    public void testToStringOutput() {
+        Job newJob1 = new Job("Product tester", new Employer ("Acme"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String actualOutput = newJob1.toString();
+        String expectedOutput = "\n" + "ID: " + newJob1.getId() + "\n" +
+                "Name: Product tester" + "\n" +
+                "Employer: Acme" + "\n" +
+                "Location: Desert" + "\n" +
+                "Position Type: Quality control" + "\n" +
+                "Core Competency: Persistence" + "\n";
 
 
 
+    }
+
+    @Test
+    public void testToStringContainsCorrectLabelsAndData() {
+        Job newJob1 = new Job("Product tester", new Employer ("Acme"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+        String actualOutput = newJob1.toString();
+        String expectedOutput = "\n" + "ID: " + newJob1.getId() + "\n" +
+                "Name: Product tester" + "\n" +
+                "Employer: Acme" + "\n" +
+                "Location: Desert" + "\n" +
+                "Position Type: Quality control" + "\n" +
+                "Core Competency: Persistence" + "\n";
+        assertEquals(expectedOutput, actualOutput);
+    }
+
+    @Test
+    public void testToStringStartsAndEndsWithNewLine() {
+        Job newJob1 = new Job("Product tester", new Employer ("Acme"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+
+        char actualOutput = newJob1.toString().charAt(0);
+        assertEquals('\n', actualOutput);
+        char desiredOutput = newJob1.toString().charAt(newJob1.toString().length() -1);
+        assertEquals('\n', desiredOutput);
+    }
+
+    @Test
+    public void testToStringHandlesEmptyField() {
+        Job newJob1 = new Job("Product tester", new Employer (""), new Location("Desert"), new PositionType(""), new CoreCompetency("Persistence"));
+        String actualOutput = newJob1.toString();
+        String expectedOutput = "\n" + "ID: " + newJob1.getId() + "\n" +
+                "Name: Product tester" + "\n" +
+                "Employer: Data not available" + "\n" +
+                "Location: Desert" + "\n" +
+                "Position Type: Data not available" + "\n" +
+                "Core Competency: Persistence" + "\n";
+        assertEquals(expectedOutput, actualOutput);
+
+    }
 }
